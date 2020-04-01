@@ -1,0 +1,21 @@
+{
+  "name": "opennotes",
+  "version": "0.0.0",
+  "description": "Open notes for our college",
+  "main": "index.js",
+  "engines": {
+    "node": "10.17.0",
+    "npm": "6.14.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amor and Sritom",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "nodemon": "^2.0.2"
+  }
+}
