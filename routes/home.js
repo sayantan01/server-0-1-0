@@ -1,16 +1,22 @@
 const express=require('express');
-const fs=require('fs');
 const url=require('url');
-module.exports=(app)=>{
-  /*app.get("/", (req,res)=>{
-    console.log('reached the handler for /');
-    var data= fs.readFileSync('./client/public/index.js','utf8')//,(err,data)=>this._data=data);
-    res.send(data);
-  });*/
+const mongoose=require('mongoose');
+const Books=mongoose.model('books');
 
-  app.get("/search",(req,res)=>{
-    //var data=url.parse(req.url,false);
-    //var data=new URL(req.url);
-    res.send("received the msg "+'['+req.url+']');
+
+module.exports=(app)=>{
+
+  app.get("/search",async (req,res)=>{
+    var uselesslen='/search?search='.length;
+    var search=req.url.substring(uselesslen);
+
+    var book=await Books.find({tags:search});
+    console.log(book);
+    res.send(book||false);
+  });
+
+  app.get("/addtodb",(req,res)=>{
+    new Books({name:"book2",type:"pdf",tags:["b","c"],download_link:"google.com"}).save();
+    res.redirect("/");
   });
 };
